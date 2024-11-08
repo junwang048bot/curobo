@@ -1,0 +1,759 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="onshape">
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="onshape">
+<link name="root_link" /> 
+
+<link name="root_link_linear_x" />
+<joint name="root_link_linear_x_joint" type="prismatic">
+<origin xyz="0 0 0" rpy="0 0 0" />
+<parent link="root_link" />
+<child link="root_link_linear_x" />
+<axis xyz="1 0 0" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+<limit effort="87" velocity="20.0" lower="-5.0" upper="5.0" />
+</joint> 
+
+<link name="root_link_linear_y" />
+<joint name="root_link_linear_y_joint" type="prismatic">
+<origin xyz="0 0 0" rpy="0 0 0" />
+<parent link="root_link_linear_x" />
+<child link="root_link_linear_y" />
+<axis xyz="0 1 0" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+<limit effort="87" velocity="20.0" lower="-5.0" upper="5.0" />
+</joint> 
+
+<joint name="root_link_angular_joint" type="revolute">
+<origin xyz="0 0 0" rpy="0 0 0" />
+<parent link="root_link_linear_y" />
+<child link="base_link" />
+<axis xyz="0 0 1" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+<limit effort="87" velocity="20.0" lower="-3.14159" upper="3.14159" />
+</joint> 
+
+<link name="base_link">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/base_link_visual.stl" />
+</geometry>
+<material name="base_link_material">
+<color rgba="0.76880089870858792089 0.59012053207044201653 0.36595107780045055268 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/base_link_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.068742675385451923464 0.017642064082150389626 -0.0021646490361660344036" rpy="0 0 0" />
+<mass value="6.7228471944179428732" />
+<inertia ixx="0.14882374391118732837" ixy="0.0042791525233378188697" ixz="0.023555075494477335785" iyy="0.13612883724290955612" iyz="-0.0058739913416150282138" izz="0.25739188061900891702" />
+</inertial>
+</link>
+
+<link name="simbot_week_3_wheel">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/simbot_week_3_wheel_visual.stl" />
+</geometry>
+<material name="simbot_week_3_wheel_material">
+<color rgba="0.81364028311451297437 0.81364028311451297437 0.81364028311451297437 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/simbot_week_3_wheel_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-3.6307987943458522121e-14 -3.1915253229441720973e-13 -0.0043040249595075229586" rpy="0 0 0" />
+<mass value="0.92081398286368609796" />
+<inertia ixx="0.0034211343845004368522" ixy="-2.6451750390407185418e-15" ixz="6.9031933368324113256e-15" iyy="0.0034210354459389474488" iyz="1.2229256922840939934e-13" izz="0.006600294463491768876" />
+</inertial>
+</link>
+
+<joint name="right_wheel" type="continuous">
+<origin xyz="-0.056999999999999544087 -0.18699999999999741829 0.015000000000000041078" rpy="-1.570796326794896558 8.0202995195760060301e-27 -2.0904813988356678319e-29" />
+<parent link="base_link" />
+<child link="simbot_week_3_wheel" />
+<axis xyz="0 0 1" />
+<limit effort="20" velocity="20" />
+<joint_properties friction="0.0" />
+</joint>
+
+<link name="simbot_week_3_wheel_2">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/simbot_week_3_wheel_2_visual.stl" />
+</geometry>
+<material name="simbot_week_3_wheel_2_material">
+<color rgba="0.81364028311451297437 0.81364028311451297437 0.81364028311451297437 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/simbot_week_3_wheel_2_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-3.6301108262883097115e-14 -3.1915941197499268523e-13 -0.0043040249595075229586" rpy="0 0 0" />
+<mass value="0.92081398286368609796" />
+<inertia ixx="0.0034211343845004368522" ixy="-2.645175039040714992e-15" ixz="6.9031534014263641975e-15" iyy="0.0034210354459389474488" iyz="1.2229224173819353918e-13" izz="0.006600294463491768876" />
+</inertial>
+</link>
+
+<joint name="left_wheel" type="continuous">
+<origin xyz="-0.05699999999999983552 0.1869999999999979734 0.015000000000000193734" rpy="1.570796326794896558 -9.064368100169439572e-27 -6.6613381477508011919e-15" />
+<parent link="base_link" />
+<child link="simbot_week_3_wheel_2" />
+<axis xyz="0 0 1" />
+<limit effort="20" velocity="20" />
+<joint_properties friction="0.0" />
+</joint>
+
+<link name="urdf_boom_base">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_boom_base_visual.stl" />
+</geometry>
+<material name="urdf_boom_base_material">
+<color rgba="0.65910014810270367569 0.62946230878962994293 0.7262993309967699096 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_boom_base_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.027359956397382784177 0.057318966727655559779 0.065322718812064514693" rpy="0 0 0" />
+<mass value="2.3411332083370894885" />
+<inertia ixx="0.0085769035887675679902" ixy="0.0048527237703126970686" ixz="8.3167615571967841437e-05" iyy="0.038910718482987993738" iyz="0.00019216948211013049996" izz="0.037843944327432106622" />
+</inertial>
+</link>
+
+<link name="urdf_boom_mid">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_boom_mid_visual.stl" />
+</geometry>
+<material name="urdf_boom_mid_material">
+<color rgba="0.75592467948514874276 0.76245490386986480846 0.76637152281532072706 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_boom_mid_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.024131581122272864615 -5.3563025580630455435e-06 0.20994368833271850883" rpy="0 0 0" />
+<mass value="0.59637339661252597445" />
+<inertia ixx="0.010424036605408798853" ixy="9.8539318384858732234e-09" ixz="1.4527616218731142538e-06" iyy="0.0096255598003150144581" iyz="-1.2927430988660342079e-08" izz="0.0010437050139639981669" />
+</inertial>
+</link>
+
+<link name="urdf_boom_top">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_boom_top_visual.stl" />
+</geometry>
+<material name="urdf_boom_top_material">
+<color rgba="0.54259628812676474752 0.59971212126811535015 0.6526195112124683062 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_boom_top_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-0.0087003204461979788409 -1.5460194504785447494e-06 0.22409023476518441509" rpy="0 0 0" />
+<mass value="0.52390501536614952904" />
+<inertia ixx="0.0093211825126279495429" ixy="2.1977882837774012344e-09" ixz="1.6581641857953935588e-05" iyy="0.0090813762742172829401" iyz="1.5583995942119142908e-08" izz="0.00033892095815757426573" />
+</inertial>
+</link>
+
+<link name="urdf_shoulder_low">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_shoulder_low_visual.stl" />
+</geometry>
+<material name="urdf_shoulder_low_material">
+<color rgba="0.25092565252768173067 0.41841208035066645987 0.64124848301171022413 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_shoulder_low_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.0039015196449283338215 -1.2648770576821936648e-07 0.082363813643738098547" rpy="0 0 0" />
+<mass value="1.6482900699761486862" />
+<inertia ixx="0.0050467295859263107405" ixy="-4.2658132956761664585e-09" ixz="-0.00032076555474948688969" iyy="0.0051023509348610066039" iyz="2.4499354916297028566e-09" izz="0.0013456503828045474937" />
+</inertial>
+</link>
+
+<link name="urdf_shoulder_high">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_shoulder_high_visual.stl" />
+</geometry>
+<material name="urdf_shoulder_high_material">
+<color rgba="0.28552406694537429965 0.57401969288164766958 0.72260967487069516224 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_shoulder_high_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-0.0019768324318968628732 0.091409426693166526134 -0.015159046764795548745" rpy="0 0 0" />
+<mass value="1.3893662010296590203" />
+<inertia ixx="0.0044547015426198415672" ixy="0.0002511461450789071099" ixz="-4.5598660405676873773e-05" iyy="0.0019416325677357403577" iyz="0.00077526999922577154948" izz="0.0040906907529919718514" />
+</inertial>
+</link>
+
+<link name="urdf_forearm_base">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_forearm_base_visual.stl" />
+</geometry>
+<material name="urdf_forearm_base_material">
+<color rgba="0.29064705203576429726 0.38557620752362470329 0.71188225170492414051 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_forearm_base_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-3.0055964126041015437e-06 0.0033465322874770163028 0.15624222677922725011" rpy="0 0 0" />
+<mass value="0.9523834639630789356" />
+<inertia ixx="0.014624093243600604433" ixy="-1.035211621038126191e-08" ixz="-3.5439782448316770181e-07" iyy="0.015413167245048809556" iyz="-0.00041770159718412303886" izz="0.0012879261763384731217" />
+</inertial>
+</link>
+
+<link name="urdf_forearm_mid">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_forearm_mid_visual.stl" />
+</geometry>
+<material name="urdf_forearm_mid_material">
+<color rgba="0.929995038012352504 0.83224204538565005329 0.55925351330218386892 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_forearm_mid_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="1.1820667426865967973e-09 0.020805790195416156568 0.15577523169934007208" rpy="0 0 0" />
+<mass value="0.62771094403628036051" />
+<inertia ixx="0.0059435178680868261045" ixy="3.6131394439486771235e-11" ixz="-2.8608324817667318699e-12" iyy="0.0062568559824717406501" iyz="8.5969176312925837274e-07" izz="0.00054465493388003969905" />
+</inertial>
+</link>
+
+<link name="urdf_forearm_top">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_forearm_top_visual.stl" />
+</geometry>
+<material name="urdf_forearm_top_material">
+<color rgba="0.82682008939659545899 0.73553219517743606559 0.35246754072223640541 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_forearm_top_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-3.6535558449398012322e-06 0.0046705667331684271384 0.14038899967156587278" rpy="0 0 0" />
+<mass value="0.40982005329651860492" />
+<inertia ixx="0.0033518103763264341967" ixy="2.2616681148989976142e-09" ixz="9.639512889155103857e-08" iyy="0.0033596795854118777919" iyz="-6.0161229330729220363e-05" izz="8.0830493693009538864e-05" />
+</inertial>
+</link>
+
+<link name="urdf_wrist_pitch">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_wrist_pitch_visual.stl" />
+</geometry>
+<material name="urdf_wrist_pitch_material">
+<color rgba="0.81176470588235294379 0.85882352941176465233 0.89803921568627453897 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_wrist_pitch_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.089999999999993612887 -0.021944786540970560862 0.046700000000003218104" rpy="0 0 0" />
+<mass value="0.0052356446417053878473" />
+<inertia ixx="2.51986115211016935e-07" ixy="6.2067295977418779988e-20" ixz="-1.759371610791007003e-32" iyy="4.8854310502069909597e-07" iyz="-2.6020167982506222444e-20" izz="2.5198611521101698794e-07" />
+</inertial>
+</link>
+
+<link name="urdf_gripper_body">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_gripper_body_visual.stl" />
+</geometry>
+<material name="urdf_gripper_body_material">
+<color rgba="0.57409659081233621603 0.56185781106344900859 0.72519774046373797205 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_gripper_body_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.00028619842929202400725 0.062148268645415179201 0.058995274097585856388" rpy="0 0 0" />
+<mass value="0.24923735522833251332" />
+<inertia ixx="0.00029767847243972932409" ixy="-7.4510008588454166412e-06" ixz="9.2854415049576341284e-06" iyy="0.00035109080266697994827" iyz="3.3407481232058278836e-05" izz="0.00045275992743875004493" />
+</inertial>
+</link>
+
+<link name="gear_arm_l">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/gear_arm_l_visual.stl" />
+</geometry>
+<material name="gear_arm_l_material">
+<color rgba="0.84363006909362658892 0.63141357170614165195 0.33826082490607878306 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/gear_arm_l_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-0.00094664237562532569173 -0.068853594945522081372 -0.0090331195228531696584" rpy="0 0 0" />
+<mass value="0.056137838862505666515" />
+<inertia ixx="0.00020838575577938493527" ixy="1.0930292266360085445e-05" ixz="4.1962392294105126938e-08" iyy="8.5907545323718879129e-06" iyz="-2.1138609612090907142e-07" izz="0.00021291650128196163826" />
+</inertial>
+</link>
+
+<!-- <link name="closing_grip_L2_passive_1">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<joint name="closing_grip_L2_passive_1_frame" type="fixed">
+<origin xyz="-0.011845060483807210577 -0.090125165618590019623 -0.012000000000000010658" rpy="-3.141592653589793116 -1.1699390729868202521e-29 1.5365543774845886067e-28" />
+<parent link="gear_arm_l" />
+<child link="closing_grip_L2_passive_1" />
+<axis xyz="0 0 0" />
+</joint>
+
+<joint name="grip_L" type="revolute">
+<origin xyz="-0.020000000000002907813 0.076584980598677049324 0.034600000000001712719" rpy="3.1415926535897868987 -1.2690329060317841362e-14 -2.9704634843898933167e-15" />
+<parent link="urdf_gripper_body" />
+<child link="gear_arm_l" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="-1.53588974175501" upper="0.0" />
+<joint_properties friction="0.0" />
+</joint>
+
+<link name="bone_l">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/bone_l_visual.stl" />
+</geometry>
+<material name="bone_l_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/bone_l_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-0.0034526958512300725233 0.039416556860790666339 -0.0048487749136766674501" rpy="0 0 0" />
+<mass value="0.011361005890852744413" />
+<inertia ixx="9.3547031971081127835e-06" ixy="1.0565770543982324965e-06" ixz="1.8737293415735753106e-09" iyy="8.7339936652769316375e-07" iyz="-1.7189295914983026132e-08" izz="8.9637044903687653467e-06" />
+</inertial>
+</link>
+
+<link name="closing_grip_L3_1">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<joint name="closing_grip_L3_1_frame" type="fixed">
+<origin xyz="-0.010000000000000007147 0.089442719099991463416 -0.011500000000000010214" rpy="3.141592653589793116 -5.8017748838490605127e-30 -3.2462103048287295036e-28" />
+<parent link="bone_l" />
+<child link="closing_grip_L3_1" />
+<axis xyz="0 0 0" />
+</joint>
+
+<joint name="grip_L1_passive" type="revolute">
+<origin xyz="-0.010000000000001058389 0.10658498059868079522 0.049100000000005333822" rpy="-6.9095963518571576111e-15 -7.1498059379588697942e-15 4.4208293874358811133e-14" />
+<parent link="urdf_gripper_body" />
+<child link="bone_l" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+</joint>
+
+<link name="gear_arm_r">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/gear_arm_r_visual.stl" />
+</geometry>
+<material name="gear_arm_r_material">
+<color rgba="0.64705882352941168634 0.64705882352941168634 0.64705882352941168634 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/gear_arm_r_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.0045679635628493482635 -0.024995284983556111114 -0.007374509541032997495" rpy="0 0 0" />
+<mass value="0.026508538615140464501" />
+<inertia ixx="2.7706202385202660708e-05" ixy="3.8277755833443740093e-06" ixz="-2.1844271840671260597e-08" iyy="3.4677380500787897559e-06" iyz="2.0757178766401747224e-07" izz="3.037912734168906828e-05" />
+</inertial>
+</link>
+
+<link name="urdf_jaw_r">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_jaw_r_visual.stl" />
+</geometry>
+<material name="urdf_jaw_r_material">
+<color rgba="0.68081612020460036128 0.76023339939855805181 0.76050359345344353823 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/urdf_jaw_r_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="-0.014599904515696558727 0.038928428557403027543 -0.0077709288097100055054" rpy="0 0 0" />
+<mass value="0.024807707396059194144" />
+<inertia ixx="1.6634584518219498321e-05" ixy="5.321688415775600353e-06" ixz="-1.2743684028145008956e-08" iyy="4.0607587131122723019e-06" iyz="1.0134718510402383528e-07" izz="1.792593123479181591e-05" />
+</inertial>
+</link>
+
+<link name="closing_grip_R3_2">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<joint name="closing_grip_R3_2_frame" type="fixed">
+<origin xyz="-0.011845060483811137991 0.029317553481401803506 0.00050000000000000044409" rpy="3.141592653589793116 -4.1938400085103851802e-29 -1.570796326794896558" />
+<parent link="urdf_jaw_r" />
+<child link="closing_grip_R3_2" />
+<axis xyz="0 0 0" />
+</joint>
+
+<joint name="grip_R2_passive" type="revolute">
+<origin xyz="0.011845060483811134522 -0.090125165618589520022 -0.016499999999998404832" rpy="3.1415926535897873428 8.8545020709294755919e-15 7.996953453625754052e-14" />
+<parent link="gear_arm_r" />
+<child link="urdf_jaw_r" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="grip_R" type="revolute">
+<origin xyz="0.019999999999998806927 0.076584980598679824881 0.036100000000005461054" rpy="3.1415926535897908956 -7.9885277527945579737e-15 -2.97046348439017494e-15" />
+<parent link="urdf_gripper_body" />
+<child link="gear_arm_r" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+</joint>
+
+<link name="bone_r">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/bone_r_visual.stl" />
+</geometry>
+<material name="bone_r_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/bone_r_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0.0034526958447086246451 0.03941655684042401353 -0.0048487726232523155334" rpy="0 0 0" />
+<mass value="0.011361005904265650615" />
+<inertia ixx="9.3547032260331020861e-06" ixy="-1.0565770579536645158e-06" ixz="-1.8738516481607591574e-09" iyy="8.7339938942739385243e-07" iyz="-1.7189637256614948216e-08" izz="8.9637044987271085933e-06" />
+</inertial>
+</link>
+
+<link name="closing_grip_R3_1">
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="1e-9" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+<joint name="closing_grip_R3_1_frame" type="fixed">
+<origin xyz="0.010000000000000000208 0.089442719099991352394 0.0040000000000000035527" rpy="-3.141592653589793116 1.6277544167850446841e-29 5.0521960555691690504e-29" />
+<parent link="bone_r" />
+<child link="closing_grip_R3_1" />
+<axis xyz="0 0 0" />
+</joint>
+
+<joint name="grip_R1_passive" type="revolute">
+<origin xyz="0.0099999999999990391714 0.10658498059868085073 0.049100000000004306866" rpy="-2.4447888142187084613e-15 -8.9352473089523705148e-15 -3.0107259836933967535e-14" />
+<parent link="urdf_gripper_body" />
+<child link="bone_r" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+</joint> -->
+
+<link name="camera_imx219">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/camera_imx219_visual.stl" />
+</geometry>
+<material name="camera_imx219_material">
+<color rgba="0.5 0.5 0.5 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/camera_imx219_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="center_camera" type="revolute">
+<origin xyz="-2.9948374509480846228e-15 0.09021485673697768326 0.080175281743357001973" rpy="-1.3089969389956555013 -1.523574387351103474e-14 6.7675035183917151322e-15" />
+<parent link="urdf_gripper_body" />
+<child link="camera_imx219" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="0.0" upper="1e-9" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="wrist_yaw" type="revolute">
+<origin xyz="0.089999999999993682276 -0.024499999999999133582 0.046700000000006805512" rpy="-1.5707963267951563502 -1.5707963267945104224 0" />
+<parent link="urdf_wrist_pitch" />
+<child link="urdf_gripper_body" />
+<axis xyz="0 0 1" />
+<limit effort="10.6" velocity="2.09" lower="-1.4542137869155878" upper="1.4542137869155878" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="wrist_pitch_revolute" type="revolute">
+<origin xyz="0.046649999999992572408 0.0059999999998692349346 0.34904999999998598259" rpy="-1.5707963267948212849 -1.6630950930057385862e-13 1.5707963267949724973" />
+<parent link="urdf_forearm_top" />
+<child link="urdf_wrist_pitch" />
+<axis xyz="0 0 1" />
+<limit effort="21.2" velocity="1.57" lower="-3.141592653589793" upper="0.0" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="forearm_top_extension" type="prismatic">
+<origin xyz="-2.0057740190981832029e-18 0.012499999999999969469 0.0085000000000163833391" rpy="-2.8310687123374527509e-15 5.5479063240694880041e-16 3.3168115316259591478e-15" />
+<parent link="urdf_forearm_mid" />
+<child link="urdf_forearm_top" />
+<axis xyz="0 0 1" />
+<limit effort="700" velocity="0.5" lower="0" upper="0.22859999999999999765" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="forearm_mid_extension_passive" type="prismatic">
+<origin xyz="-1.4457456499333831701e-14 -0.021499999999971972087 0.094500000000014794388" rpy="-3.0636691789292786963e-13 -3.9024099392702501108e-14 -5.7661817609803872043e-13" />
+<parent link="urdf_forearm_base" />
+<child link="urdf_forearm_mid" />
+<axis xyz="0 0 1" />
+<limit effort="700" velocity="0.5" lower="0" upper="0.22859999999999999765" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="forearm_roll" type="revolute">
+<origin xyz="-0.037557780000014973076 0.12300000000001154454 -0.024399999999995886785" rpy="2.9032332093977069251e-14 -1.5707963267939786256 0" />
+<parent link="urdf_shoulder_high" />
+<child link="urdf_forearm_base" />
+<axis xyz="0 0 1" />
+<limit effort="80" velocity="1.256" lower="-1.861415511804502" upper="2.0595246031860794" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="shoulder_tilt" type="revolute">
+<origin xyz="-0.024699999999976737092 -2.7811954128598159741e-14 0.13445000000008611174" rpy="-1.9735698926347720457e-13 -1.5707963267934323959 0" />
+<parent link="urdf_shoulder_low" />
+<child link="urdf_shoulder_high" />
+<axis xyz="0 0 1" />
+<limit effort="80" velocity="1.57" lower="-3.02270275094204" upper="0.03490658503988659" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="shoulder_rotate" type="revolute">
+<origin xyz="-0.0092129999998267556038 -1.4955735440506155128e-13 0.41720000000026608022" rpy="-4.7628567756889294642e-14 -5.3515126712315285189e-13 1.5707963268002438362" />
+<parent link="urdf_boom_top" />
+<child link="urdf_shoulder_low" />
+<axis xyz="0 0 1" />
+<limit effort="80" velocity="1.04" lower="-3.387904960701805" upper="3.42010870355137" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="boom_top_extension" type="prismatic">
+<origin xyz="0.036112499999999998768 -1.7159692537615375753e-17 0.015100050174982157514" rpy="2.707087688342186717e-15 2.2204460492352998252e-16 1.1560554083370413078e-15" />
+<parent link="urdf_boom_mid" />
+<child link="urdf_boom_top" />
+<axis xyz="0 0 1" />
+<limit effort="400" velocity="0.2" lower="0" upper="0.30480000000000001537" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="boom_mid_extension_passive" type="prismatic">
+<origin xyz="0.04500005017497135662 0.0084509988362041349452 0.063903999999983196467" rpy="1.5707963267947797625 1.298423213568772e-13 1.5707963267955371567" />
+<parent link="urdf_boom_base" />
+<child link="urdf_boom_mid" />
+<axis xyz="0 0 1" />
+<limit effort="400" velocity="0.2" lower="0" upper="0.30480000000000001537" />
+<joint_properties friction="0.0" />
+</joint>
+
+<joint name="boom_tilt" type="revolute">
+<origin xyz="0.03299999999999883582 0.063903999999997129766 0.047999999999999320988" rpy="1.5707963267949083264 -1.5707963267935587393 0" />
+<parent link="base_link" />
+<child link="urdf_boom_base" />
+<axis xyz="0 0 1" />
+<limit effort="88" velocity="1.308" lower="-0.8517907693731237" upper="0.24657139939656272" />
+<joint_properties friction="0.0" />
+</joint>
+
+<link name="base_imu_link">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/base_imu_link_visual.stl" />
+</geometry>
+<material name="base_imu_link_material">
+<color rgba="0.5 0.5 0.5 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/base_imu_link_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="imu" type="fixed">
+<origin xyz="0.18910054256311556453 0.080866499539998165647 -0.015461927199999765323" rpy="3.141592653589793116 -2.5738169685028735798e-25 1.570796326794896558" />
+<parent link="base_link" />
+<child link="base_imu_link" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+</joint>
+
+<link name="laser">
+<visual>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/laser_visual.stl" />
+</geometry>
+<material name="laser_material">
+<color rgba="0.5 0.5 0.5 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0 0 0" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/laser_collision.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="laser" type="fixed">
+<origin xyz="0.13149999999999623101 -0.021500000000002350564 1.6799062148266134099e-16" rpy="0 0 -1.570796326794896558" />
+<parent link="base_link" />
+<child link="laser" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+</joint>
+
+
+</robot>

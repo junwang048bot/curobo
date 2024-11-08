@@ -1,0 +1,934 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="onshape">
+<link name="root_link" /> 
+
+<link name="root_link_linear_x" />
+<joint name="root_link_linear_x_joint" type="prismatic">
+<origin xyz="0 0 0" rpy="0 0 0" />
+<parent link="root_link" />
+<child link="root_link_linear_x" />
+<axis xyz="1 0 0" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+<limit effort="87" velocity="20.0" lower="-5.0" upper="5.0" />
+</joint> 
+
+<link name="root_link_linear_y" />
+<joint name="root_link_linear_y_joint" type="prismatic">
+<origin xyz="0 0 0" rpy="0 0 0" />
+<parent link="root_link_linear_x" />
+<child link="root_link_linear_y" />
+<axis xyz="0 1 0" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+<limit effort="87" velocity="20.0" lower="-5.0" upper="5.0" />
+</joint> 
+
+<joint name="root_link_angular_joint" type="revolute">
+<origin xyz="0 0 0" rpy="0 0 0" />
+<parent link="root_link_linear_y" />
+<child link="base_link" />
+<axis xyz="0 0 1" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+<limit effort="87" velocity="20.0" lower="-3.14159" upper="3.14159" />
+</joint> 
+
+<link name="base_link">
+<visual>
+<origin xyz="0.17322107894611718515 1.026476543691246703e-05 -0.035964133268102500829" rpy="0 -0 1.570796326794896558" />
+<geometry>
+<mesh filename="meshes/base_link.stl" />
+</geometry>
+<material name="base_link_material">
+<color rgba="0.97254901960784312376 0.52941176470588235947 0.0039215686274509803377 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0.17322107894611718515 1.026476543691246703e-05 -0.035964133268102500829" rpy="0 -0 1.570796326794896558" />
+<geometry>
+<mesh filename="meshes/base_link.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="left_wheel">
+<visual>
+<origin xyz="0.00032746059808816396774 0.1071764560227699975 0.14670000000077798585" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/left_wheel.stl" />
+</geometry>
+<material name="left_wheel_material">
+<color rgba="0.49803921568627451677 0.49803921568627451677 0.49803921568627451677 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0.00032746059808816396774 0.1071764560227699975 0.14670000000077798585" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/left_wheel.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="left_wheel_joint" type="continuous">
+<origin xyz="0.1735483215057904427 0.14621026476715992537 0.071212108099543702799" rpy="-1.570796326794896558 -0 3.141592653589793116" />
+<parent link="base_link" />
+<child link="left_wheel" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="right_wheel">
+<visual>
+<origin xyz="0.00032746059791197157374 0.1071764560227699975 -0.17470000000157898112" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/right_wheel.stl" />
+</geometry>
+<material name="right_wheel_material">
+<color rgba="0.98039215686274505668 0.71372549019607844922 0.0039215686274509803377 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0.00032746059791197157374 0.1071764560227699975 -0.17470000000157898112" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/right_wheel.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="right_wheel_joint" type="continuous">
+<origin xyz="0.17354869382577473025 -0.14618973523628508993 0.071212238653796486321" rpy="1.570796326794896558 -0 3.141592653589793116" />
+<parent link="base_link" />
+<child link="right_wheel" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="boom_base">
+<visual>
+<origin xyz="0.00032746059808941296865 -0.10717645602271597127 -0.12124644660936598206" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/boom_base.stl" />
+</geometry>
+<material name="boom_base_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0.00032746059808941296865 -0.10717645602271597127 -0.12124644660936598206" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/boom_base.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="boom_extension">
+<visual>
+<origin xyz="-0.054560075043554007168 -0.073969542010234395901 0.28248320702543544547" rpy="-2.7389013943944773288 -4.9303806576313248786e-32 -9.8607613152626497572e-32" />
+<geometry>
+<mesh filename="meshes/boom_extension.stl" />
+</geometry>
+<material name="boom_extension_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.054560075043554007168 -0.073969542010234395901 0.28248320702543544547" rpy="-2.7389013943944773288 -4.9303806576313248786e-32 -9.8607613152626497572e-32" />
+<geometry>
+<mesh filename="meshes/boom_extension.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="composite_part_6">
+<visual>
+<origin xyz="-0.05445690541009349378 -0.073979070232704419174 0.70395264063141704813" rpy="-2.738901394424674951 -5.2260923276819958212e-06 0" />
+<geometry>
+<mesh filename="meshes/composite_part_6.stl" />
+</geometry>
+<material name="composite_part_6_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.05445690541009349378 -0.073979070232704419174 0.70395264063141704813" rpy="-2.738901394424674951 -5.2260923276819958212e-06 0" />
+<geometry>
+<mesh filename="meshes/composite_part_6.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="composite_part_7">
+<visual>
+<origin xyz="-0.23047804292061990772 0.7298328619120599825 -0.096500000000022484459" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/composite_part_7.stl" />
+</geometry>
+<material name="composite_part_7_material">
+<color rgba="0.91764705882352937127 0.91764705882352937127 0.91764705882352937127 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.23047804292061990772 0.7298328619120599825 -0.096500000000022484459" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/composite_part_7.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="forearm_extension">
+<visual>
+<origin xyz="0.05439615369238588044 0.57022380344360334981 -0.33720094137616840602" rpy="1.1464911335056822139 1.7347234759768074796e-18 -1.7347234759768074796e-18" />
+<geometry>
+<mesh filename="meshes/forearm_extension.stl" />
+</geometry>
+<material name="forearm_extension_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0.05439615369238588044 0.57022380344360334981 -0.33720094137616840602" rpy="1.1464911335056822139 1.7347234759768074796e-18 -1.7347234759768074796e-18" />
+<geometry>
+<mesh filename="meshes/forearm_extension.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="wrist_roll">
+<visual>
+<origin xyz="0.05472500324567742408 0.57045401853663246783 -0.33720145271092372141" rpy="1.1464902371415326421 -1.7347234759768070944e-18 2.6020852139652106416e-18" />
+<geometry>
+<mesh filename="meshes/wrist_roll.stl" />
+</geometry>
+<material name="wrist_roll_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0.05472500324567742408 0.57045401853663246783 -0.33720145271092372141" rpy="1.1464902371415326421 -1.7347234759768070944e-18 2.6020852139652106416e-18" />
+<geometry>
+<mesh filename="meshes/wrist_roll.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="wrist_pitch">
+<visual>
+<origin xyz="0.23976107403447394217 -0.51765005116865103751 0.054725370788174972081" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/wrist_pitch.stl" />
+</geometry>
+<material name="wrist_pitch_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="0.23976107403447394217 -0.51765005116865103751 0.054725370788174972081" rpy="-1.570796326794896558 -1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/wrist_pitch.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="gripper">
+<visual>
+<origin xyz="-6.9388939039072283776e-18 -5.5511151231257827021e-17 -0.04475000000000001199" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/gripper.stl" />
+</geometry>
+<material name="gripper_material">
+<color rgba="0.61568627450980395466 0.81176470588235294379 0.92941176470588238168 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-6.9388939039072283776e-18 -5.5511151231257827021e-17 -0.04475000000000001199" rpy="1.570796326794896558 1.570796326794896558 0" />
+<geometry>
+<mesh filename="meshes/gripper.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="part_1">
+<visual>
+<origin xyz="-0.061234691964604834324 -0.039999999999999570621 -0.010000000000000008882" rpy="5.5511151231257839347e-17 6.9388939039072299184e-18 3.816391647148976224e-17" />
+<geometry>
+<mesh filename="meshes/part_1.stl" />
+</geometry>
+<material name="part_1_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.061234691964604834324 -0.039999999999999570621 -0.010000000000000008882" rpy="5.5511151231257839347e-17 6.9388939039072299184e-18 3.816391647148976224e-17" />
+<geometry>
+<mesh filename="meshes/part_1.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="part_2">
+<visual>
+<origin xyz="-0.13171163852354836332 0.065651510749423686031 -0.010000000000000008882" rpy="3.141592653589793116 -5.5511151231257827021e-17 1.0408340855860842566e-17" />
+<geometry>
+<mesh filename="meshes/part_2.stl" />
+</geometry>
+<material name="part_2_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.13171163852354836332 0.065651510749423686031 -0.010000000000000008882" rpy="3.141592653589793116 -5.5511151231257827021e-17 1.0408340855860842566e-17" />
+<geometry>
+<mesh filename="meshes/part_2.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="grip_tip_left_joint" type="revolute">
+<origin xyz="0.070476946558943528998 0.025651510749424059898 -0.020000000000000017764" rpy="-3.1415926535897917837 2.2759572004815685413e-15 -1.2590574943923811269" />
+<parent link="part_1" />
+<child link="part_2" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="grip_left_joint" type="revolute">
+<origin xyz="0.039999999999999591438 -0.010250000000000036859 -0.10598469196460476305" rpy="1.57079632679489678 0.17845864134977179605 1.114037859428854888e-15" />
+<parent link="gripper" />
+<child link="part_1" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="-3.141592653589793116" upper="-0.1745329251994329478" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="part_3">
+<visual>
+<origin xyz="-0.061234691964604834324 0.039999999999999619194 -0.025000000000000077716" rpy="0 6.9388939039072268369e-18 3.4694469519536134185e-18" />
+<geometry>
+<mesh filename="meshes/part_3.stl" />
+</geometry>
+<material name="part_3_material">
+<color rgba="0.64705882352941179736 0.64705882352941179736 0.64705882352941179736 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.061234691964604834324 0.039999999999999619194 -0.025000000000000077716" rpy="0 6.9388939039072268369e-18 3.4694469519536134185e-18" />
+<geometry>
+<mesh filename="meshes/part_3.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="part_4">
+<visual>
+<origin xyz="-0.13171163852354805801 0.065651510749423519497 -0.02499999999999980016" rpy="1.3253287356462837756e-15 1.6653345369377387549e-16 -1.3704315460216808093e-16" />
+<geometry>
+<mesh filename="meshes/part_5.stl" />
+</geometry>
+<material name="part_5_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.13171163852354805801 0.065651510749423519497 -0.02499999999999980016" rpy="1.3253287356462837756e-15 1.6653345369377387549e-16 -1.3704315460216808093e-16" />
+<geometry>
+<mesh filename="meshes/part_5.stl" />
+</geometry>
+</collision>
+<visual>
+<origin xyz="-0.13171163852354833557 0.065651510749423699909 -0.024999999999999966693" rpy="0 -0 -3.1225022567582527699e-17" />
+<geometry>
+<mesh filename="meshes/part_4.stl" />
+</geometry>
+<material name="part_4_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.13171163852354833557 0.065651510749423699909 -0.024999999999999966693" rpy="0 -0 -3.1225022567582527699e-17" />
+<geometry>
+<mesh filename="meshes/part_4.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="grip_tip_right_joint" type="revolute">
+<origin xyz="0.070476946558943501242 -0.025651510749424125818 -1.1102230246251565404e-16" rpy="-7.285838599102595713e-16 8.3266726846886849e-16 1.2590574943923806828" />
+<parent link="part_3" />
+<child link="part_4" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="grip_right_joint" type="revolute">
+<origin xyz="-0.040000000000000028588 -0.02524999999999993916 -0.10598469196460451325" rpy="-1.570796326794896336 0.1784586413497710744 3.141592653589793116" />
+<parent link="gripper" />
+<child link="part_3" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="li-venus-isx031-gmsl2-195h">
+<visual>
+<origin xyz="-0.012500000000000004163 -0.012499999999999955591 -0.035429999999999906013" rpy="1.5707963267948961139 8.6736173798840354721e-19 -1.3010426069826053208e-18" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+<material name="li-venus-isx031-gmsl2-195h_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.012500000000000004163 -0.012499999999999955591 -0.035429999999999906013" rpy="1.5707963267948961139 8.6736173798840354721e-19 -1.3010426069826053208e-18" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="cam_gripper_top_joint" type="fixed">
+<origin xyz="-4.3715031594615538779e-16 -0.056500000000000050182 -0.059984691964604805459" rpy="-2.0943951023931948185 -2.4264444620225589233e-16 3.1415926535897926719" />
+<parent link="gripper" />
+<child link="li-venus-isx031-gmsl2-195h" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="li-venus-isx031-gmsl2-195h_2">
+<visual>
+<origin xyz="-0.012500000000000038858 -0.012500000000000031919 -0.035429999999999961524" rpy="1.5707963267948961139 2.7755575615628913511e-17 -3.794707603699265519e-18" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+<material name="li-venus-isx031-gmsl2-195h_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.012500000000000038858 -0.012500000000000031919 -0.035429999999999961524" rpy="1.5707963267948961139 2.7755575615628913511e-17 -3.794707603699265519e-18" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="cam_gripper_bottom_joint" type="fixed">
+<origin xyz="6.9388939039072283776e-18 0.05649999999999993916 -0.05999999999999999778" rpy="-3.1415926535897922278 1.0471975511965978534 -1.5707963267948970021" />
+<parent link="gripper" />
+<child link="li-venus-isx031-gmsl2-195h_2" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="li-venus-isx031-gmsl2-195h_3">
+<visual>
+<origin xyz="-0.012500000000000004163 -0.012500000000000011102 -0.035430000000000003157" rpy="1.5707963267948961139 2.168404344971008868e-18 8.6736173798840354721e-19" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+<material name="li-venus-isx031-gmsl2-195h_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.012500000000000004163 -0.012500000000000011102 -0.035430000000000003157" rpy="1.5707963267948961139 2.168404344971008868e-18 8.6736173798840354721e-19" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="cam_gripperpalm_joint" type="fixed">
+<origin xyz="-0.0080000000000000140443 -5.5511151231257827021e-17 -0.094547990245564136891" rpy="-3.1415926535897917837 -9.1289822923279497995e-17 3.141592653589793116" />
+<parent link="gripper" />
+<child link="li-venus-isx031-gmsl2-195h_3" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="li-venus-isx031-gmsl2-195h_4">
+<visual>
+<origin xyz="-0.012500000000000004163 -0.0090975993216380751649 0" rpy="0 -1.7347234759768070944e-18 2.168404344971008868e-19" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+<material name="li-venus-isx031-gmsl2-195h_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.012500000000000004163 -0.0090975993216380751649 0" rpy="0 -1.7347234759768070944e-18 2.168404344971008868e-19" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="cam_gripper_top_old_joint" type="fixed">
+<origin xyz="0.010147788729865644952 -0.049499999999999988454 -0.06735395754491300957" rpy="-1.5707963267948952257 6.8738417735580919486e-17 4.3541559247017818627e-16" />
+<parent link="gripper" />
+<child link="li-venus-isx031-gmsl2-195h_4" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="li-venus-isx031-gmsl2-195h_5">
+<visual>
+<origin xyz="-0.012500000000000004163 0.0090975993216380335316 -0.025000000000000022204" rpy="3.141592653589793116 8.6736173798840335461e-19 1.7347234759768067092e-18" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+<material name="li-venus-isx031-gmsl2-195h_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.012500000000000004163 0.0090975993216380335316 -0.025000000000000022204" rpy="3.141592653589793116 8.6736173798840335461e-19 1.7347234759768067092e-18" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="cam_gripper_bottom_old_joint" type="fixed">
+<origin xyz="0.010147788729865700463 0.05399999999999999245 -0.029153957544913053357" rpy="2.007128639793489544 -4.7735253250191323793e-15 9.9317255808361169985e-15" />
+<parent link="gripper" />
+<child link="li-venus-isx031-gmsl2-195h_5" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="wrist_roll_joint" type="revolute">
+<origin xyz="-0.068267810476838206024 0.001868591415633835684 -1.3481012042793061312e-08" rpy="1.57079632679489678 1.5634938939581968231 1.5434316735217525896" />
+<parent link="wrist_pitch" />
+<child link="gripper" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="-2.0071286397934788859" upper="2.0071286397934788859" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="wrist_pitch_joint" type="revolute">
+<origin xyz="-3.675371516506653613e-07 -9.9114754847917652114e-08 -0.34259104932393513732" rpy="-1.57079632679489678 -0.86063838890024779715 -1.5707963267948961139" />
+<parent link="wrist_roll" />
+<child link="wrist_pitch" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="-2.0071286397934788859" upper="2.0071286397934788859" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="forearm_roll_joint" type="revolute">
+<origin xyz="2.0816681711721685133e-17 -5.5511151231257827021e-17 -1.1102230246251565404e-16" rpy="-1.8873791418627621744e-15 4.4235448637408649933e-16 -3.1414061426459030102" />
+<parent link="forearm_extension" />
+<child link="wrist_roll" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="-2.0071286397934788859" upper="2.0071286397934788859" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="forearm_extension_joint" type="prismatic">
+<origin xyz="-0.40585974190058149436 0.18334698738180188471 -0.042045316669580654056" rpy="0.42430519328921367794 1.5707963267948961139 0" />
+<parent link="composite_part_7" />
+<child link="forearm_extension" />
+<axis xyz="0 0 -1" />
+<limit effort="1" velocity="20" lower="-0.4000000000000000222" upper="0" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="li-venus-isx031-gmsl2-195h_6">
+<visual>
+<origin xyz="-0.012500000000000233147 0.012500000000000177636 0.030629999999999997506" rpy="-1.57079632679489678 1.7347234759768070944e-18 0" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+<material name="li-venus-isx031-gmsl2-195h_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.012500000000000233147 0.012500000000000177636 0.030629999999999997506" rpy="-1.57079632679489678 1.7347234759768070944e-18 0" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="cam_elbow_joint" type="fixed">
+<origin xyz="-2.2204460492503130808e-16 1.1102230246251565404e-16 -0.0030000000000000026645" rpy="-3.141592653589793116 -1.7347234759768090203e-18 -2.0071286397934788859" />
+<parent link="composite_part_7" />
+<child link="li-venus-isx031-gmsl2-195h_6" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="shoulder_tilt_joint" type="revolute">
+<origin xyz="-0.15095292429380702259 -2.6985349936836655615e-06 -0.057824491714591363944" rpy="1.5708081961297186702 1.1148612781322040366 -1.5707856699159856717" />
+<parent link="composite_part_6" />
+<child link="composite_part_7" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="-3.14159" upper="3.14159" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="li-venus-isx031-gmsl2-195h_7">
+<visual>
+<origin xyz="-0.012499999999999997224 -0.012500000000000177636 -0.035430000000000044791" rpy="1.5707963267948961139 -4.336808689942017736e-18 -1.7347234759768070944e-18" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+<material name="li-venus-isx031-gmsl2-195h_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.012499999999999997224 -0.012500000000000177636 -0.035430000000000044791" rpy="1.5707963267948961139 -4.336808689942017736e-18 -1.7347234759768070944e-18" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="cam_shoulder_front_joint" type="fixed">
+<origin xyz="4.7220796984021040643e-05 -0.047002711321248280552 -0.085586865561469327446" rpy="1.5707972247826265111 -5.2260923276802644859e-06 -6.9388939040019902939e-18" />
+<parent link="composite_part_6" />
+<child link="li-venus-isx031-gmsl2-195h_7" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="li-venus-isx031-gmsl2-195h_8">
+<visual>
+<origin xyz="-0.012499999999999997224 -0.012499999999999733546 -0.035430000000000128058" rpy="1.5707963267948961139 -1.7347234759768070944e-18 0" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+<material name="li-venus-isx031-gmsl2-195h_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.012499999999999997224 -0.012499999999999733546 -0.035430000000000128058" rpy="1.5707963267948961139 -1.7347234759768070944e-18 0" />
+<geometry>
+<mesh filename="meshes/li-venus-isx031-gmsl2-195h.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="cam_shoulder_back_joint" type="fixed">
+<origin xyz="4.7220796735317205339e-05 0.046997288678746251822 -0.08558681796935863062" rpy="-1.570795428807166827 -5.2260923276559825924e-06 1.5178830415004362396e-16" />
+<parent link="composite_part_6" />
+<child link="li-venus-isx031-gmsl2-195h_8" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="boom_swivel_joint" type="revolute">
+<origin xyz="-0.00010694507222952509551 9.6608905391371013849e-06 -0.42096971819357509315" rpy="1.6653345369377745002e-16 -2.4286128663675262344e-17 0.020704027018091222812" />
+<parent link="boom_extension" />
+<child link="composite_part_6" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="-3.14159" upper="3.14159"/>
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="boom_extension_joint" type="prismatic">
+<origin xyz="0.25302650613723792761 0.67481900889410517674 -0.066746446609386334003" rpy="1.1681050675995803267 -1.5707963267948956698 0" />
+<parent link="boom_base" />
+<child link="boom_extension" />
+<axis xyz="0 0 -1" />
+<limit effort="1" velocity="20" lower="-0.54" upper="-0.0" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="boom_tilt_joint" type="revolute">
+<origin xyz="0.17354853954420709772 0.12161026476541392238 0.071212322754666296243" rpy="1.570796326794896558 0.10668880248658434151 -3.141592653589793116" />
+<parent link="base_link" />
+<child link="boom_base" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" lower="-1.1693705988362008696" upper="1.9722220547535924684" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="document">
+<visual>
+<origin xyz="-0.078740437448456018776 -0.25100706029718250489 -0.058000000000002091549" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/document.stl" />
+</geometry>
+<material name="document_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.078740437448456018776 -0.25100706029718250489 -0.058000000000002091549" rpy="0 -0 0" />
+<geometry>
+<mesh filename="meshes/document.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="composite_part_9">
+<visual>
+<origin xyz="-0.29194742819574326376 -0.030000000000002000761 0.067260500880517937183" rpy="-1.570796326794896558 -1.0475156628856396868 0" />
+<geometry>
+<mesh filename="meshes/composite_part_9.stl" />
+</geometry>
+<material name="composite_part_9_material">
+<color rgba="0.97254901960784312376 0.52941176470588235947 0.0039215686274509803377 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.29194742819574326376 -0.030000000000002000761 0.067260500880517937183" rpy="-1.570796326794896558 -1.0475156628856396868 0" />
+<geometry>
+<mesh filename="meshes/composite_part_9.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="casterwheel_left_joint" type="revolute">
+<origin xyz="0.0091085137880703992419 0.035360544599275761657 -0.027999999999999993644" rpy="1.570796326794896558 -0 1.0475156628856399088" />
+<parent link="document" />
+<child link="composite_part_9" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="casterpivot_left_joint" type="revolute">
+<origin xyz="-0.077726075444485787092 0.071210264767027242616 0.022999999999999999611" rpy="0 -0 2.1127001637069646733" />
+<parent link="base_link" />
+<child link="document" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<link name="document_2">
+<visual>
+<origin xyz="-0.078740437448455977143 -0.25100706029718250489 -0.058000000000002091549" rpy="0 -0 5.5511151231257827021e-17" />
+<geometry>
+<mesh filename="meshes/document.stl" />
+</geometry>
+<material name="document_material">
+<color rgba="0.2313725490196078538 0.38039215686274507888 0.7058823529411765163 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.078740437448455977143 -0.25100706029718250489 -0.058000000000002091549" rpy="0 -0 5.5511151231257827021e-17" />
+<geometry>
+<mesh filename="meshes/document.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<link name="composite_part_9_2">
+<visual>
+<origin xyz="-0.29194742819574315273 -0.030000000000001997291 0.067260500880517881672" rpy="-1.570796326794896558 -1.0475156628856394647 0" />
+<geometry>
+<mesh filename="meshes/composite_part_9.stl" />
+</geometry>
+<material name="composite_part_9_material">
+<color rgba="0.97254901960784312376 0.52941176470588235947 0.0039215686274509803377 1.0" />
+</material>
+</visual>
+<collision>
+<origin xyz="-0.29194742819574315273 -0.030000000000001997291 0.067260500880517881672" rpy="-1.570796326794896558 -1.0475156628856394647 0" />
+<geometry>
+<mesh filename="meshes/composite_part_9.stl" />
+</geometry>
+</collision>
+<inertial>
+<origin xyz="0 0 0" rpy="0 0 0" />
+<mass value="0" />
+<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+</inertial>
+</link>
+
+<joint name="casterwheel_right_joint" type="revolute">
+<origin xyz="0.0091085137880703888336 0.035360544599275761657 -0.027999999999999990175" rpy="1.570796326794896558 -0 1.0475156628856396868" />
+<parent link="document_2" />
+<child link="composite_part_9_2" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+<joint name="casterpivot_right_joint" type="revolute">
+<origin xyz="-0.07772607544448573158 -0.071189735236153128817 0.022999999999999999611" rpy="0 -0 2.1065303188404498336" />
+<parent link="base_link" />
+<child link="document_2" />
+<axis xyz="0 0 1" />
+<limit effort="1" velocity="20" />
+<joint_properties friction="0.0" />
+<dynamics damping="1000" />
+</joint>
+
+
+</robot>

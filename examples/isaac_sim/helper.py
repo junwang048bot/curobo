@@ -25,6 +25,12 @@ from pxr import UsdPhysics
 from curobo.util.logger import log_warn
 from curobo.util.usd_helper import set_prim_transform
 
+# Third Party
+from omni.isaac.core.utils.extensions import enable_extension
+
+enable_extension("omni.importer.urdf")
+enable_extension("omni.isaac.lab_assets")
+
 ISAAC_SIM_23 = False
 try:
     # Third Party
@@ -37,9 +43,6 @@ except ImportError:
 # Standard Library
 from typing import Optional
 
-# Third Party
-from omni.isaac.core.utils.extensions import enable_extension
-
 # CuRobo
 from curobo.util_file import get_assets_path, get_filename, get_path_of_dir, join_path
 
@@ -48,7 +51,7 @@ def add_extensions(simulation_app, headless_mode: Optional[str] = None):
     ext_list = [
         "omni.kit.asset_converter",
         "omni.kit.tool.asset_importer",
-        "omni.isaac.asset_browser",
+        # "omni.isaac.asset_browser",
     ]
     if headless_mode is not None:
         log_warn("Running in headless mode: " + headless_mode)
@@ -79,7 +82,7 @@ def add_robot_to_scene(
     import_config.self_collision = False
     import_config.create_physics_scene = True
     import_config.import_inertia_tensor = False
-    import_config.default_drive_strength = 1047.19751
+    import_config.default_drive_strength = 5000
     import_config.default_position_drive_damping = 52.35988
     import_config.default_drive_type = _urdf.UrdfJointTargetType.JOINT_DRIVE_POSITION
     import_config.distance_scale = 1

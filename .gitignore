@@ -202,3 +202,5 @@ nvidia_curobo*/
 
 *.csv
 docs/*
+
+.history/

@@ -20,16 +20,23 @@ import torch
 
 a = torch.zeros(4, device="cuda:0")
 # Third Party
-from omni.isaac.kit import SimulationApp
+from omni.isaac.lab.app import AppLauncher
 
-simulation_app = SimulationApp(
-    {
-        "headless": False,
-        "width": "1920",
-        "height": "1080",
-    }
-)
+# Standard Library
+import argparse
+parser = argparse.ArgumentParser()
 
+parser.add_argument("--robot", type=str, default="franka.yml", help="robot configuration to load")
+
+args = parser.parse_args()
+# append AppLauncher cli args
+AppLauncher.add_app_launcher_args(parser)
+# parse the arguments
+args = parser.parse_args()
+
+# launch omniverse app
+app_launcher = AppLauncher(args)
+simulation_app = app_launcher.app
 # Third Party
 import numpy as np
 import torch
@@ -52,8 +59,7 @@ from curobo.wrap.reacher.motion_gen import (
 )
 
 simulation_app.update()
-# Standard Library
-import argparse
+
 
 # Third Party
 import carb
@@ -64,13 +70,6 @@ from omni.isaac.core.utils.types import ArticulationAction
 
 # CuRobo
 from curobo.util.usd_helper import UsdHelper
-
-parser = argparse.ArgumentParser()
-
-
-parser.add_argument("--robot", type=str, default="franka.yml", help="robot configuration to load")
-
-args = parser.parse_args()
 
 
 if __name__ == "__main__":
@@ -163,7 +162,7 @@ if __name__ == "__main__":
         collision_checker_type=CollisionCheckerType.MESH,
         collision_cache={"obb": n_obstacle_cuboids, "mesh": n_obstacle_mesh},
         interpolation_dt=0.02,
-        ee_link_name="right_gripper",
+        ee_link_name="urdf_gripper_body",
     )
     motion_gen = MotionGen(motion_gen_config)
     print("warming up..")

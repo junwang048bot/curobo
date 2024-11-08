@@ -1,0 +1,137 @@
+collision_spheres:
+    base_link: 
+        - center: [0.268, 0.096, -0.041]
+          radius: 0.075
+        - center: [0.123, -0.102, -0.04]
+          radius: 0.075
+        - center: [0.262, -0.101, -0.052]
+          radius: 0.075
+        - center: [0.124, 0.104, -0.033]
+          radius: 0.075
+    urdf_boom_base: 
+        - center: [-0.038, 0.049, 0.064]
+          radius: 0.0719
+        - center: [0.291, 0.03, 0.063]
+          radius: 0.068
+        - center: [0.182, 0.031, 0.063]
+          radius: 0.0657
+        - center: [0.398, 0.031, 0.064]
+          radius: 0.0623
+        - center: [0.077, 0.031, 0.065]
+          radius: 0.0629
+    urdf_boom_mid: 
+        - center: [0.026, -0.002, 0.362]
+          radius: 0.0526
+        - center: [0.027, -0.0, 0.279]
+          radius: 0.0535
+        - center: [0.023, 0.0, 0.205]
+          radius: 0.0518
+    urdf_boom_top: 
+        - center: [-0.009, -0.001, 0.278]
+          radius: 0.0352
+        - center: [-0.006, -0.002, 0.17]
+          radius: 0.0352
+        - center: [-0.005, -0.001, 0.224]
+          radius: 0.0352
+        - center: [-0.008, -0.002, 0.387]
+          radius: 0.0335
+        - center: [-0.007, -0.0, 0.337]
+          radius: 0.0352
+    urdf_shoulder_low: 
+        - center: [-0.001, -0.001, 0.065]
+          radius: 0.0491
+        - center: [0.004, -0.001, 0.119]
+          radius: 0.0491
+        - center: [0.0, -0.0, 0.017]
+          radius: 0.0491
+    urdf_shoulder_high: 
+        - center: [0.002, 0.002, 0.002]
+          radius: 0.049
+        - center: [-0.002, 0.128, -0.024]
+          radius: 0.047
+        - center: [0.004, 0.075, -0.026]
+          radius: 0.059
+    urdf_forearm_base: 
+        - center: [0.003, -0.008, 0.137]
+          radius: 0.06
+        - center: [-0.0, -0.011, 0.351]
+          radius: 0.06
+        - center: [0.003, -0.008, 0.216]
+          radius: 0.0591
+        - center: [0.002, -0.007, 0.283]
+          radius: 0.0575
+        - center: [-0.001, -0.003, 0.058]
+          radius: 0.0542
+    urdf_forearm_mid: 
+        - center: [0.001, 0.003, 0.16]
+          radius: 0.0491
+        - center: [-0.0, 0.003, 0.214]
+          radius: 0.0485
+        - center: [0.001, 0.002, 0.269]
+          radius: 0.0485
+        - center: [0.0, 0.005, 0.108]
+          radius: 0.046
+    urdf_forearm_top: 
+        - center: [0.001, -0.004, 0.096]
+          radius: 0.036
+        - center: [0.0, -0.003, 0.19]
+          radius: 0.0345
+        - center: [0.001, -0.004, 0.145]
+          radius: 0.033
+        - center: [0.002, -0.001, 0.239]
+          radius: 0.0323
+        - center: [-0.027, 0.004, 0.323]
+          radius: 0.036
+        - center: [0.021, 0.004, 0.316]
+          radius: 0.0345
+        - center: [-0.031, 0.004, 0.35]
+          radius: 0.033
+        - center: [0.026, 0.005, 0.35]
+          radius: 0.0323
+        - center: [-0.001, 0.007, 0.282]
+          radius: 0.0315
+    urdf_wrist_pitch: 
+        - center: [0.042, 0.0, 0.079]
+          radius: 0.026
+        - center: [0.045, -0.001, 0.025]
+          radius: 0.0248
+        - center: [0.051, 0.008, 0.048]
+          radius: 0.0212
+        - center: [0.073, 0.001, 0.046]
+          radius: 0.036
+    urdf_gripper_body: 
+        - center: [-0.005, 0.052, 0.052]
+          radius: 0.0665
+    gear_arm_l: 
+        - center: [-0.001, -0.06, -0.005]
+          radius: 0.0242
+        - center: [-0.003, -0.094, -0.007]
+          radius: 0.0242
+        - center: [0.002, -0.124, -0.009]
+          radius: 0.015
+        - center: [0.009, -0.144, -0.008]
+          radius: 0.0142
+        - center: [0.01, -0.165, -0.01]
+          radius: 0.01
+    gear_arm_r: 
+        - center: [0.001, -0.049, -0.005]
+          radius: 0.0249
+        - center: [0.003, -0.079, -0.006]
+          radius: 0.0239
+    urdf_jaw_r: 
+        - center: [-0.019, 0.049, -0.008]
+          radius: 0.0143
+        - center: [-0.015, 0.034, -0.01]
+          radius: 0.0143
+        - center: [-0.008, 0.016, -0.016]
+          radius: 0.0135
+        - center: [-0.009, 0.018, -0.006]
+          radius: 0.0143
+        - center: [-0.022, 0.081, -0.007]
+          radius: 0.0101
+    # simbot_week_3_wheel: 
+    #     - center: [-0.011, -0.014, 0.022]
+    #       radius: 0.1065
+    # simbot_week_3_wheel_2: 
+    #     - center: [-0.014, 0.021, 0.026]
+    #       radius: 0.1065

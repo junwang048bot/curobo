@@ -88,15 +88,16 @@ args = parser.parse_args()
 ############################################################
 
 # Third Party
-from omni.isaac.kit import SimulationApp
+from omni.isaac.lab.app import AppLauncher
 
-simulation_app = SimulationApp(
-    {
-        "headless": args.headless_mode is not None,
-        "width": "1920",
-        "height": "1080",
-    }
-)
+# append AppLauncher cli args
+AppLauncher.add_app_launcher_args(parser)
+# parse the arguments
+args = parser.parse_args()
+
+# launch omniverse app
+app_launcher = AppLauncher(args)
+simulation_app = app_launcher.app
 # Standard Library
 from typing import Dict
 
@@ -157,10 +158,17 @@ def main():
     # stage.SetDefaultPrim(stage.GetPrimAtPath("/World"))
 
     # Make a target to follow
+    # target = cuboid.VisualCuboid(
+    #     "/World/target",
+    #     position=np.array([0.5, 0, 0.5]),
+    #     orientation=np.array([0.70711, 0, -0.70711, 0]),
+    #     color=np.array([1.0, 0, 0]),
+    #     size=0.05,
+    # )
     target = cuboid.VisualCuboid(
         "/World/target",
         position=np.array([0.5, 0, 0.5]),
-        orientation=np.array([0, 1, 0, 0]),
+        orientation=np.array([0.70711, 0, 0, -0.70711]),
         color=np.array([1.0, 0, 0]),
         size=0.05,
     )
@@ -194,12 +202,12 @@ def main():
     world_cfg_table = WorldConfig.from_dict(
         load_yaml(join_path(get_world_configs_path(), "collision_table.yml"))
     )
-    world_cfg_table.cuboid[0].pose[2] -= 0.02
+    world_cfg_table.cuboid[0].pose[2] -= 0.17
     world_cfg1 = WorldConfig.from_dict(
         load_yaml(join_path(get_world_configs_path(), "collision_table.yml"))
     ).get_mesh_world()
     world_cfg1.mesh[0].name += "_mesh"
-    world_cfg1.mesh[0].pose[2] = -10.5
+    world_cfg1.mesh[0].pose[2] = -11.1
 
     world_cfg = WorldConfig(cuboid=world_cfg_table.cuboid, mesh=world_cfg1.mesh)
 
@@ -254,7 +262,7 @@ def main():
 
     cmd_plan = None
     cmd_idx = 0
-    my_world.scene.add_default_ground_plane()
+    my_world.scene.add_default_ground_plane(z_position=-0.15)
     i = 0
     spheres = None
     past_cmd = None

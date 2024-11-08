@@ -1,0 +1,97 @@
+
+collision_spheres:
+    base_link: 
+      - center: [-0.091, 0.079, 0.035]
+        radius: 0.1006
+      - center: [-0.098, -0.085, 0.04]
+        radius: 0.1006
+      - center: [0.059, -0.097, 0.055]
+        radius: 0.1006
+      - center: [0.065, 0.089, 0.047]
+        radius: 0.1006
+    boom_base: 
+      - center: [0.028, 0.087, -0.069]
+        radius: 0.1135
+      - center: [0.151, 0.429, -0.069]
+        radius: 0.0817
+      - center: [0.11, 0.333, -0.067]
+        radius: 0.0794
+      - center: [0.188, 0.524, -0.071]
+        radius: 0.0801
+      - center: [0.065, 0.234, -0.068]
+        radius: 0.0763
+    boom_extension: 
+      - center: [-0.0, -0.0, -0.059]
+        radius: 0.0755
+      - center: [-0.0, -0.0, -0.221]
+        radius: 0.0755
+      - center: [-0.0, -0.0, -0.336]
+        radius: 0.0755
+      - center: [-0.001, -0.001, -0.132]
+        radius: 0.0746
+      - center: [-0.0, 0.0, -0.39]
+        radius: 0.0755
+    composite_part_6: 
+      - center: [0.006, -0.023, -0.058]
+        radius: 0.0812
+    composite_part_7: 
+      - center: [-0.377, 0.168, -0.043]
+        radius: 0.0598
+      - center: [-0.305, 0.138, -0.043]
+        radius: 0.0598
+      - center: [-0.232, 0.109, -0.043]
+        radius: 0.0598
+      - center: [-0.157, 0.074, -0.043]
+        radius: 0.0582
+      - center: [-0.087, 0.043, -0.043]
+        radius: 0.0582
+      - center: [-0.00606, 0.00471, -0.043]
+        radius: 0.0652
+    forearm_extension: 
+        - center: [0.0, 0.0, -0.047]
+          radius: 0.0581
+        - center: [0.001, 0.0, -0.182]
+          radius: 0.0581
+        - center: [0.0, 0.0, -0.111]
+          radius: 0.0581
+        - center: [0.0, 0.0, -0.249]
+          radius: 0.0581
+    wrist_roll: 
+      - center: [-0.0, -0.0, -0.338]
+        radius: 0.055
+    wrist_pitch: 
+      - center: [-0.054, -0.0, 0.0]
+        radius: 0.0349
+    gripper: 
+      - center: [-0.002, 0.001, -0.061]
+        radius: 0.0725
+    # part_1: 
+    #   - center: [0.043, 0.014, -0.01]
+    #     radius: 0.0196
+    #   - center: [0.066, 0.023, -0.01]
+    #     radius: 0.0196
+    #   - center: [0.023, 0.008, -0.012]
+    #     radius: 0.0196
+    # part_2: 
+    #   - center: [0.036, 0.017, -0.011]
+    #     radius: 0.0157
+    #   - center: [0.02, 0.01, -0.01]
+    #     radius: 0.0146
+    # part_3: 
+    #   - center: [0.038, -0.016, -0.039]
+    #     radius: 0.0256
+    #   - center: [0.034, -0.014, -0.006]
+    #     radius: 0.0256
+    # part_4/collisions: 
+    #   - center: [0.016, 0.009, -0.005]
+    #     radius: 0.0158
+    #   - center: [0.015, 0.007, -0.044]
+    #     radius: 0.0158
+    #   - center: [0.033, 0.018, -0.043]
+    #     radius: 0.0158
+    #   - center: [0.0, 0.001, -0.006]
+    #     radius: 0.0158
+    #   - center: [0.034, 0.02, -0.004]
+    #     radius: 0.0158
+    #   - center: [-0.003, -0.0, -0.044]
+    #     radius: 0.0158

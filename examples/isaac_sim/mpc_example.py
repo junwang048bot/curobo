@@ -44,20 +44,21 @@ parser.add_argument(
 )
 
 parser.add_argument("--robot", type=str, default="franka.yml", help="robot configuration to load")
-args = parser.parse_args()
 
 ###########################################################
 
 # Third Party
-from omni.isaac.kit import SimulationApp
+from omni.isaac.lab.app import AppLauncher
 
-simulation_app = SimulationApp(
-    {
-        "headless": args.headless_mode is not None,
-        "width": "1920",
-        "height": "1080",
-    }
-)
+
+# append AppLauncher cli args
+AppLauncher.add_app_launcher_args(parser)
+# parse the arguments
+args = parser.parse_args()
+
+# launch omniverse app
+app_launcher = AppLauncher(args)
+simulation_app = app_launcher.app
 
 # Third Party
 # Enable the layers and stage windows in the UI
@@ -354,7 +355,7 @@ def main():
         cmd_state_full = cmd_state
 
         art_action = ArticulationAction(
-            cmd_state.position.cpu().numpy(),
+            cmd_state.position[0].cpu().numpy(),
             # cmd_state.velocity.cpu().numpy(),
             joint_indices=idx_list,
         )
